@@ -9,30 +9,29 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg, #141e30, #243b55);
       color: #fff;
     }
 
     .container {
       max-width: 420px;
-      margin: 60px auto;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(15px);
-      padding: 30px;
+      margin: 50px auto;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(20px);
+      padding: 25px;
       border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
       text-align: center;
     }
 
     h2 {
-      font-size: 26px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
-    p.desc {
-      font-size: 14px;
-      opacity: 0.8;
-      margin-bottom: 20px;
+    .live {
+      font-size: 12px;
+      color: #00ffcc;
+      margin-bottom: 15px;
     }
 
     input, select {
@@ -59,23 +58,30 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 10px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: scale(1.03);
     }
 
     .result {
       margin-top: 20px;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
+      color: #00ffcc;
     }
 
-    .footer {
-      margin-top: 15px;
-      font-size: 12px;
-      opacity: 0.6;
+    .quick {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .quick a {
+      display: block;
+      margin: 5px 0;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .quick a:hover {
+      color: #fff;
     }
   </style>
 </head>
@@ -84,19 +90,25 @@
 
 <div class="container">
   <h2>💱 محول العملات</h2>
-  <p class="desc">تحويل العملات لحظياً بأسعار دقيقة ومحدثة</p>
+  <div class="live">● تحديث مباشر</div>
 
-  <input type="number" id="amount" placeholder="أدخل المبلغ">
+  <input type="number" id="amount" placeholder="أدخل المبلغ" oninput="convert()">
 
   <div class="row">
-    <select id="from"></select>
-    <select id="to"></select>
+    <select id="from" onchange="convert()"></select>
+    <select id="to" onchange="convert()"></select>
   </div>
 
   <button onclick="convert()">تحويل الآن</button>
 
   <div class="result" id="result"></div>
-  <div class="footer">يتم التحديث حسب السوق العالمي</div>
+
+  <div class="quick">
+    <strong>أكثر عمليات البحث:</strong>
+    <a href="usd-to-kwd.html">تحويل الدولار إلى الدينار</a>
+    <a href="eur-to-kwd.html">تحويل اليورو إلى الدينار</a>
+    <a href="kwd-to-sar.html">تحويل الدينار إلى الريال</a>
+  </div>
 </div>
 
 <script>
@@ -119,7 +131,7 @@
     const to = toSelect.value;
 
     if (!amount) {
-      alert("ادخل مبلغ");
+      document.getElementById('result').innerText = "";
       return;
     }
 
@@ -135,6 +147,8 @@
       document.getElementById('result').innerText = "خطأ في الاتصال";
     }
   }
+
+  convert();
 </script>
 
 </body>
