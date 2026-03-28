@@ -155,7 +155,7 @@ async function goldPrice() {
   try {
     const res = await fetch('https://api.gold-api.com/price/XAU');
     const data = await res.json();
-    document.getElementById('gold').innerText = 'سعر الذهب اليوم: ' + data[0].price + ' USD';
+    document.getElementById('gold').innerText = 'سعر الذهب اليوم: ' + data.price + ' USD';
   } catch {
     document.getElementById('gold').innerText = 'تعذر تحميل سعر الذهب';
   }
